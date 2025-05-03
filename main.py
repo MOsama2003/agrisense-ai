@@ -29,7 +29,7 @@ groq_client = Groq(api_key=GROQ_API_KEY)  # Replace with your actual API key
 # Initialize Qdrant Client (Cloud)
 qdrant_client = qdrant_client.QdrantClient(
     url=QDRANT_URL,  # Replace with your Qdrant URL
-    api_key=QDRANT_API_KEY  # Replace with your Qdrant API key
+    api_key=QDRANT_API_KEY # Replace with your Qdrant API key
 )
 collection_name = "documents"
 
@@ -242,10 +242,11 @@ generate max 3 advisories daily and no other text other than these tasks , retur
 
     try:
         response = groq_client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1024
+            max_tokens=1024,
+            response_format={"type":"json_object"}
         )
 
         if not response.choices or not response.choices[0].message.content:
@@ -338,10 +339,11 @@ generate max 2 tasks daily and no other text other than these tasks, return only
 """
     try:
         response = groq_client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1024
+            max_tokens=1024,
+            response_format={"type":"json_object"}
         )
 
         if not response.choices or not response.choices[0].message.content:
@@ -452,10 +454,11 @@ Return only json array nothing else no optimization rules at the bottom, also ne
 
     try:
         response = groq_client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1024
+            max_tokens=1024,
+            response_format={"type":"json_object"}
         )
 
         if not response.choices or not response.choices[0].message.content:
@@ -548,10 +551,11 @@ Return a structured **JSON response** in the following format:
 
     try:
         response = groq_client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1024
+            max_tokens=1024,
+            response_format={"type":"json_object"}
         )
 
         if not response.choices or not response.choices[0].message.content:
